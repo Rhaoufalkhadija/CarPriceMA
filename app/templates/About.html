@@ -1,0 +1,266 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>À propos | CarPriceMA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/css/multi-select-tag.min.css">
+
+
+</head>
+<style>
+  
+
+  body {
+  background: linear-gradient(135deg, #fdfdfd, #c5c6c7);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c2c2c;
+  animation: fadeIn 1.2s ease-in;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/* Image Bar */
+    .navbar-brand img {
+      height:70px; 
+      width: auto;
+      margin-left: 30px; 
+      margin-right: 10px; 
+      border-radius: 5px; 
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 1.1rem;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #cc0000;
+    }
+
+    .main-card {
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(23, 21, 21, 0.1);
+      padding: 40px;
+      margin-top: 50px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .main-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      transition: 0.3s ease-in-out;
+      background-color: #8d8d8d;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.1);
+      background-color: #1c2023;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .lead {
+      font-size: 1.3rem;
+      color: #555;
+    }
+
+
+    .container {
+  max-width: 900px;
+  background-color: #fbfafa;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 20px rgba(21, 20, 20, 0.08);
+  margin-bottom: 40px;
+}
+/* Title */
+ .apropos{
+      color: #202022;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      padding-bottom: 3%;
+    }
+
+  .apropos:hover {
+  transform: scale(1.02);
+  color: #cc0000;
+}
+/* h4 */
+ .object{
+  color: #202022;
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+      padding-bottom: 3%;
+ }
+ .object:hover {
+  transform: scale(1.02);
+  color: #cc0000;
+}
+
+/* paragraphe */
+ .paragraphe{
+  color: #202022;
+      display: flex;
+      align-items: center;
+      text-justify: distribute;
+      gap: 50px;
+      flex-wrap: wrap;
+      padding-bottom: 2%;
+ }
+    
+
+    .navbar-dark {
+      background-color: #333;
+    }
+
+    .footer {
+      background-color: #333;
+      color: white;
+      padding: 10px 0; 
+      text-align: center;
+      margin-top: 195px;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0 5px;
+    }
+
+    .footer a:hover {
+      color:  #cc0000;
+    }
+
+    .card-image {
+      width: 30%; 
+      border-radius: 10px;
+    }
+    .custom-lead {
+  font-size: 1.25rem;
+  color: #333;
+  padding: 20px 25px;
+  line-height: 1.6;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(246, 246, 246, 0.05);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-style: italic;
+}
+
+.custom-lead:hover {
+  transform: scale(1.02);
+  background-color: #fdfeff;
+
+}
+/* Liste */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul.liste li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+ul.liste li::before {
+  content: "\f3e3"; 
+  font-family: "Bootstrap Icons";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: #cc0000; 
+  font-size: 1rem;
+}
+
+ul li:hover {
+  color: #cc0000;
+}
+
+/* Animation d’entrée */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+<body>
+
+     <!-- Navbar en haut -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <!-- Logo dans la barre de navigation -->
+        <a class="navbar-brand" href="#">
+          <img src="static/Logo-.png" alt="Logo CarPriceMA"> <!-- Assure-toi que le fichier 'logo.png' est dans le bon chemin -->
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('home') }}"><i class="bi bi-house-door"></i> Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('predict') }}"><i class="bi bi-bar-chart"></i> Estimer un prix</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('about') }}"><i class="bi bi-info-circle"></i> À propos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  <!-- Contenu principal -->
+  <div class="container mt-5">
+    <h1 class="apropos">À propos du projet</h1>
+    <p class="paragraphe">CarPriceMA est une application web développée pour prédire le prix des voitures d'occasion au Maroc en utilisant des techniques de Machine Learning.</p>
+    <h4 class="object"> Objectif :</h4>
+    <p>Fournir aux utilisateurs une estimation rapide et fiable du prix de leur véhicule basé sur des critères tels que la marque, le kilométrage, l’année, etc.</p>
+    
+    <h4 class="object"> Technologies utilisées :</h4>
+    <ul class="liste">
+      <li>Python + Flask pour le backend</li>
+      <li>HTML/CSS/ Javascript + Bootstrap pour le frontend</li>
+      <li>Modèle de Machine Learning (Regression / RandomForest)</li>
+    </ul>
+
+    <h4 class="object"> Données : </h4>
+    <p  class="paragraphe">Le modèle a été entraîné sur un dataset de voitures d’occasion marocaines collecté en ligne (par exemple : Avito.ma).</p>
+
+    <h4 class="object"> Développeuse :</h4>
+    <p  class="paragraphe">Ce projet a été réalisé dans le cadre d’un projet académique de Machine Learning.</p>
+  </div>
+
+
+
+     <!-- Footer -->
+     <div class="footer">
+      <p>&copy; 2025 CarPriceMA | Tous droits réservés</p>
+      <p>
+        <a href="https://www.linkedin.com" target="_blank">LinkedIn</a> | 
+        <a href="https://www.twitter.com" target="_blank">Twitter</a>
+      </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

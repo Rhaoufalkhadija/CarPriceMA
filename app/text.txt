@@ -1,0 +1,675 @@
+seheh liya m3ak kifax ndewez l m3lomat mn predict l flask                                                                                         hahowa l code nta3i w déja 3titk tari9a kifax dert normalisation dyal les données w data li 3ndi                            <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Estimation | CarPriceMA</title>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/css/multi-select-tag.min.css">
+ 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/multiselect-tag@1.0.0/dist/multiselect-tag.css">
+    <script src="https://cdn.jsdelivr.net/npm/multiselect-tag@1.0.0"></script>
+    
+
+
+    <style>
+body {
+  background: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 1.5s ease-in;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Image Bar */
+    .navbar-brand img {
+      height:70px; 
+      width: auto;
+      margin-left: 30px; 
+      margin-right: 10px; 
+      border-radius: 5px; 
+     
+      
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 1.1rem;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #cc0000;
+    }
+
+    .main-card {
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(23, 21, 21, 0.1);
+      padding: 40px;
+      margin-top: 50px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .main-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      transition: 0.3s ease-in-out;
+      background-color: #007acc;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.1);
+      background-color: #1c2023;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .lead {
+      font-size: 1.3rem;
+      color: #555;
+    }
+
+    h1 {
+      color: #171718;
+    }
+
+    .btn-lg {
+      padding: 12px 30px;
+    }
+
+    .navbar-dark {
+      background-color: #333;
+    }
+
+    .footer {
+      background-color: #333;
+      color: white;
+      padding: 10px 0; 
+      text-align: center;
+      margin-top: 195px;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0 5px;
+    }
+
+    .footer a:hover {
+      color:  #cc0000;
+    }
+
+    .card-image {
+      width: 30%; 
+      border-radius: 10px;
+    }
+    .custom-lead {
+  font-size: 1.25rem;
+  color: #333;
+  padding: 20px 25px;
+  line-height: 1.6;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(246, 246, 246, 0.05);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-style: italic;
+}
+
+.custom-lead:hover {
+  transform: scale(1.02);
+  background-color: #fdfeff;
+
+}
+
+.hh {
+      font-size: 2.5rem;
+      text-align: center; 
+      margin: 20px 0; 
+      font-weight: bold;
+      color: #25292b;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+ 
+ .hh:hover {
+  transform: scale(1.02);
+  color: #cc0000;
+}
+        .labele {
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: inherit;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .form-control, .form-select {
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #1f1e1e22;
+            border: none;
+            font-weight: 500;
+            border-radius: 30px;
+            box-shadow: 0 6px 15px rgba(84, 84, 85, 0.3);
+            transition: all 0.3s ease;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #2c382d;
+            box-shadow: 0 0 10px rgba(45, 51, 45, 0.5);
+        }
+        .optiones {
+            background-color: #f8f9fa;
+            font-size: 1.1rem;
+        }
+        .form-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .form-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn-custom {
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.btn-success.btn-custom {
+  background-color:  #1c2023;;
+  border: none;
+}
+
+.btn-success.btn-custom:hover {
+  background-color:  #cc0000;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(86, 88, 86, 0.4);
+}
+
+.btn-secondary.btn-custom {
+  background-color: #1c2023;
+  border: none;
+}
+
+.btn-secondary.btn-custom:hover {
+  background-color: #cc0000;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(86, 88, 86, 0.4);
+}
+main {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+
+/* Select Multiple */
+.multi-select-tag .tag-container {
+    display: flex;
+    padding: .5rem;
+    flex-wrap: wrap;
+    gap: .5rem;
+    border: 1px solid #e3e3e3;
+    border-radius: 1.9rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    background-color: #e3e3e3;
+}
+.multi-select-tag .tag-input {
+    padding: .25rem;
+    flex-grow: 1;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border: none;
+    background-color: #efefef;
+    margin: 0;
+    line-height: 2rem;
+    border-radius:1.9rem;
+    font-size: large;
+}
+
+.multi-select-tag .dropdown {
+    overflow: auto;
+    position: absolute;
+    z-index: 10;
+    padding: 0;
+    margin-top: .25rem;
+    border-radius: 1.25rem;
+    border: 1px solid #efefef;
+    width: 100%;
+    max-height: 15rem;
+    background-color: #efefef;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
+}
+
+.multi-select-tag .tag-item {
+    display: flex
+;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    align-items: center;
+    border-radius: 1.25rem;
+    color: #201e1e;
+    background-color: #efefef;
+    font-size: medium;
+}
+    </style>
+</head>
+<body>
+ 
+      <!-- Navbar en haut -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Logo dans la barre de navigation -->
+      <a class="navbar-brand" href="#">
+        <img src="static/Logo-.png" alt="Logo CarPriceMA"> 
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ url_for('home') }}"><i class="bi bi-house-door"></i> Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('predict') }}"><i class="bi bi-bar-chart"></i> Estimer un prix</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('about') }}"><i class="bi bi-info-circle"></i> À propos</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <main class="flex-grow-1">
+ 
+    <h2 class="hh">Formulaire d'estimation</h2>
+
+    <div class="form-section">
+        <form method="POST" class="form-container" action="/predict">
+            <div class="mb-3">
+                <label class="labele">Marque</label>
+                <input type="text" name="marque" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="labele">Modèle</label>
+                <input type="text" name="modele" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="labele">Année</label>
+                <input type="number" name="annee" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="labele">Kilométrage</label>
+                <input type="number" name="kilometrage" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="labele">Carburant</label>
+                <select name="carburant" class="form-select">
+                    <option>Essence</option>
+                    <option>Diesel</option>
+                    <option>Hybride</option>
+                    <option>Electrique</option>
+                    <option>LPG</option>
+                </select>
+            </div>
+          
+            <div class="mb-3">
+                <label class="labele">Transmission</label>
+                <select name="transmission" class="form-select">
+                    <option>Manuelle</option>
+                    <option>Automatique</option>
+                </select>
+            </div>
+            <div class="mb-3">
+              <label class="labele">Puissance fiscale</label>
+              <input type="number" name="puissance_fiscale" class="form-control" required>
+              
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Nombre de porte</label>
+            <input type="number" name="nombre_de_porte" class="form-control" required>
+          
+        </div>
+
+        <div class="mb-3">
+          <label class="labele">Origine</label>
+          <select name="origine" class="form-select">
+              <option>WW au maroc</option>
+              <option>importée neuve</option>
+              <option>didyoner</option>
+          </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="labele">Etat</label>
+        <select name="etat" class="form-select">
+            <option>Bon</option>
+            <option>Très bon</option>
+            <option>neuve</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="labele">Première main</label>
+      <select name="première_maint" class="form-select">
+          <option>Oui</option>
+          <option>Non</option>
+      </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="labele">Équipements</label>
+    <select id="equipements-select"  class="form-select custom-multiselect" name="equipements[]" multiple="multiple">
+      <option>Limiteur de vitesse</option>
+      <option>Jantes aluminium</option>
+      <option>CD/MP3/Bluetooth</option>
+      <option>Climatisation</option>
+      <option>Vitres électriques</option>
+      <option>Verrouillage centralisé à distance</option>
+      <option>Airbags</option>
+      <option>Caméra de recul</option>
+      <option>Système de navigation/GPS</option>
+      <option>Radar de recul</option>
+      <option>ESP</option>
+      <option>ABS</option>
+      <option>Ordinateur de bord</option>
+      <option>Régulateur de vitesse</option>
+      <option>Sièges cuir</option>
+      <option>Toit ouvrant</option>
+    </select>
+  </div>
+  
+            <button type="submit" class="btn btn-success btn-custom">Estimer le prix</button>
+            <a href="{{ url_for('home') }}" class="btn btn-secondary btn-custom">Retour à l'accueil</a>
+        </form>
+
+        <div>
+            <img src="static/l-removebg-preview.png" alt="Voiture" />
+        </div>
+        
+
+        <div id="estimation-result" class="mt-4" style="display: none;">
+          <h3 class="hh">Estimation du prix</h3>
+          <p id="estimated-price" class="lead"></p>
+      </div>
+      
+    </div>
+  </main>
+
+     <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 CarPriceMA | Tous droits réservés</p>
+    <p>
+      <a href="https://www.linkedin.com" target="_blank">LinkedIn</a> | 
+      <a href="https://www.twitter.com" target="_blank">Twitter</a>
+    </p>
+  </div>
+
+ <!-- End of <body> -->
+  <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/js/multi-select-tag.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ 
+ <script>
+   new MultiSelectTag('equipements-select', {
+  maxSelection: 20,
+  placeholder: 'Sélectionnez les équipements...',
+  rounded: true
+});
+
+  </script>
+  
+
+<script>
+document.getElementById('carForm').addEventListener('submit', function(e) {
+  e.preventDefault();  // Empêcher la soumission traditionnelle du formulaire
+  
+  // Récupérer les données du formulaire
+  const formData = {
+      marque: document.getElementById('marque').value,
+      modele: document.getElementById('modele').value,
+      annee: document.getElementById('annee').value,
+      kilometrage: document.getElementById('kilometrage').value,
+      carburant: document.getElementById('carburant').value
+  };
+
+  // Envoyer les données au backend via une requête POST
+  fetch('http://localhost:5000/predict', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+      // Afficher le résultat dans un div
+      document.getElementById('result').innerHTML = <p>Prix estimé: ${data.prix_estime} €</p>;
+  })
+  .catch(error => {
+      console.error('Erreur:', error);
+  });
+});
+</script>
+</body>
+</html>                                                                                                                                                                      from flask import Flask, render_template, request
+import joblib
+import pandas as pd
+import pickle
+
+app = Flask(__name__)
+
+# Charger le pipeline complet (avec prétraitement)
+model = joblib.load('voiture_model_pipeline.pkl')
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+def predict_price_with_preprocessing(nouvelle_voiture_dict):
+    df = pd.DataFrame([nouvelle_voiture_dict])
+    prix = model.predict(df)[0]
+    return round(prix * 1000, 2)  # Conversion en dirhams
+
+@app.route('/predict', methods=['GET','POST'])
+def predict():
+    try:
+        # Récupérer les champs du formulaire
+        nouvelle_voiture = {
+            'kilometrage': int(request.form.get('kilometrage')),
+            'Marque': request.form.get('marque'),
+            'Modèle': request.form.get('modele'),
+            'Origine': request.form.get('origine'),
+            'Première main': int(request.form.get('premiere_main')),
+            'Puissance fiscale': int(request.form.get('puissance_fiscale')),
+            'Etat': request.form.get('etat'),
+            'Age': 2025 - int(request.form.get('annee')),
+
+            # Champs carburant (binaire)
+            'Diesel': int('Diesel' in request.form.getlist('carburant')),
+            'Essence': int('Essence' in request.form.getlist('carburant')),
+            'Electrique': int('Electrique' in request.form.getlist('carburant')),
+            'Hybride': int('Hybride' in request.form.getlist('carburant')),
+            'LPG': int('LPG' in request.form.getlist('carburant')),
+
+            # Boîte auto
+            'BoiteàV_Auto': int(request.form.get('transmission') == 'Automatique'),
+
+            # Équipements (1 si présent, 0 sinon)
+            'Limiteur de vitesse': int('Limiteur de vitesse' in request.form.getlist('equipements')),
+            'Jantes aluminium': int('Jantes aluminium' in request.form.getlist('equipements')),
+            'CD/MP3/Bluetooth': int('CD/MP3/Bluetooth' in request.form.getlist('equipements')),
+            'Climatisation': int('Climatisation' in request.form.getlist('equipements')),
+            'Vitres électriques': int('Vitres électriques' in request.form.getlist('equipements')),
+            'Verrouillage centralisé à distance': int('Verrouillage centralisé à distance' in request.form.getlist('equipements')),
+            'Airbags': int(request.form.get('airbags')),  # Champ numérique
+            'Caméra de recul': int('Caméra de recul' in request.form.getlist('equipements')),
+            'Système de navigation/GPS': int('Système de navigation/GPS' in request.form.getlist('equipements')),
+            'Radar de recul': int('Radar de recul' in request.form.getlist('equipements')),
+            'ESP': int('ESP' in request.form.getlist('equipements')),
+            'ABS': int('ABS' in request.form.getlist('equipements')),
+            'Ordinateur de bord': int('Ordinateur de bord' in request.form.getlist('equipements')),
+            'Régulateur de vitesse': int('Régulateur de vitesse' in request.form.getlist('equipements')),
+            'Sièges cuir': int('Sièges cuir' in request.form.getlist('equipements')),
+            'Toit ouvrant': int('Toit ouvrant' in request.form.getlist('equipements')),
+        }
+
+        prix = predict_price_with_preprocessing(nouvelle_voiture)
+        return render_template('result.html', prix=prix)
+
+    except Exception as e:
+        return f"Erreur lors de la prédiction : {str(e)}", 500
+
+@app.route('/result')
+def result():
+    return render_template('result.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+ChatGPT said:
+
+
+
+
+
+
+
+from flask import Flask, render_template, request, jsonify
+import joblib
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+app = Flask(__name__)
+
+# Charger le modèle complet (sans encoders)
+model = joblib.load('xgb_model_voiture_transformed.pkl')
+
+# === Fréquences des marques et modèles (exemple) ===
+freq_marques = {'Renault': 0.05, 'Peugeot': 0.04, 'Hyundai': 0.03}
+freq_modeles = {'Clio': 0.04, '208': 0.03, 'i20': 0.02}
+
+# === Colonnes finales ===
+colonnes_modele = [
+    'kilometrage', 'Marque_freq', 'Modèle_freq', 'Origine', 'Première main',
+    'Puissance fiscale', 'Etat', 'Age',
+    'Limiteur de vitesse', 'Jantes aluminium', 'CD/MP3/Bluetooth', 'Climatisation',
+    'Vitres électriques', 'Verrouillage centralisé à distance', 'Airbags', 'Caméra de recul',
+    'Système de navigation/GPS', 'Radar de recul', 'ESP', 'ABS', 'Ordinateur de bord',
+    'Régulateur de vitesse', 'Sièges cuir', 'Toit ouvrant', 'BoiteàV', 'Carburant', 'NBporte'
+]
+
+# === Fonction de prétraitement ===
+def preprocess_input(data):
+    df = pd.DataFrame([data])
+    
+    # Calcul de l'âge en fonction de l'année
+    df['Age'] = 2025 - int(df['annee'])
+    df['NBporte'] = int(df['nombre_de_porte'])
+    df['Puissance fiscale'] = float(df['puissance_fiscale'])
+    
+    # Fréquences des marques et modèles
+    df['Marque_freq'] = df['marque'].map(freq_marques).fillna(0)
+    df['Modèle_freq'] = df['modele'].map(freq_modeles).fillna(0)
+    
+    # Autres colonnes
+    df['BoiteàV'] = df['transmission']
+    df['Carburant'] = df['carburant']
+    
+    # Première main
+    df['Première main'] = 1 if df['première_maint'].iloc[0] == 'Oui' else 0
+    
+    # Liste des équipements
+    equipements = ['Limiteur de vitesse', 'Jantes aluminium', 'CD/MP3/Bluetooth',
+                   'Climatisation', 'Vitres électriques', 'Verrouillage centralisé à distance',
+                   'Airbags', 'Caméra de recul', 'Système de navigation/GPS', 'Radar de recul',
+                   'ESP', 'ABS', 'Ordinateur de bord', 'Régulateur de vitesse',
+                   'Sièges cuir', 'Toit ouvrant']
+    
+    # Initialisation des colonnes d'équipements à 0
+    for eq in equipements:
+        df[eq] = 1 if eq in data.get('equipements[]', []) else 0
+
+    # Réorganiser les colonnes pour correspondre à celles du modèle
+    df = df[colonnes_modele]
+    
+    return df
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+# === Route de prédiction ===
+@app.route('/predict', methods=['POST', 'GET'])
+def predict():
+    if request.method == 'POST':
+        try:
+            data = request.form.to_dict(flat=False)
+            print(data)  # Vérifier les données envoyées
+
+            clean_data = {key: val[0] if isinstance(val, list) else val for key, val in data.items()}
+            clean_data['equipements'] = data.get('equipements[]', [])
+            
+            df = preprocess_input(clean_data)
+            prediction = model.predict(df)[0]
+            return render_template('result.html', prediction=round(prediction, 2))
+        except Exception as e:
+            print(f"Erreur: {str(e)}")  # Log de l'erreur
+            return f"Erreur lors du traitement: {str(e)}"
+    else:
+        return render_template('home.html')
+
+
+@app.route('/result')
+def result():
+    return render_template('result.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)

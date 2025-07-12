@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Estimation | CarPriceMA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/css/multi-select-tag.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/multiselect-tag@1.0.0/dist/multiselect-tag.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/multiselect-tag@1.0.0"></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='Logo-.png') }}" alt="Logo CarPriceMA" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('home') }}"><i class="bi bi-house-door"></i> Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('predict') }}"><i class="bi bi-bar-chart"></i> Estimer un prix</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('about') }}"><i class="bi bi-info-circle"></i> À propos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="flex-grow-1">
+      <h2 class="hh">Formulaire d'estimation</h2>
+      <div class="form-section">
+        <form method="POST" class="form-container" id="carForm" action="{{ url_for('predict') }}">
+          <div class="mb-3">
+            <label class="labele">Marque</label>
+            <input type="text" name="marque" id="marque" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Modèle</label>
+            <input type="text" name="modele" id="modele" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Année</label>
+            <input type="number" name="annee" id="annee" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Kilométrage</label>
+            <input type="number" name="kilometrage" id="kilometrage" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Carburant</label>
+            <select name="carburant" id="carburant" class="form-select">
+              <option>Essence</option>
+              <option>Diesel</option>
+              <option>Hybride</option>
+              <option>Electrique</option>
+              <option>LPG</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Transmission</label>
+            <select name="transmission" id="transmission" class="form-select">
+              <option>Manuelle</option>
+              <option>Automatique</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Puissance fiscale</label>
+            <input type="number" name="puissance_fiscale" id="puissance_fiscale" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Nombre de porte</label>
+            <input type="number" name="nombre_de_porte" id="nombre_de_porte" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Origine</label>
+            <select name="Origine" id="origine" class="form-select">
+              <option value="WW au maroc">WW au maroc</option>
+              <option value="Importée neuve">importée neuve</option>
+              <option value="Edouanée">édouanée</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Etat</label>
+            <select name="Etat" id="etat" class="form-select">
+              <option value="Bon">Bon</option>
+              <option value="Très bon">Très bon</option>
+              <option value="neuve">neuve</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Première main</label>
+            <select name="première_maint" id="premiere_main" class="form-select">
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="labele">Équipements</label>
+            <select id="equipements-select" class="form-select custom-multiselect" name="equipements[]" multiple="multiple">
+              <option value="Limiteur de vitesse">Limiteur de vitesse</option>
+              <option value="Jantes aluminium">Jantes aluminium</option>
+              <option value="CD/MP3/Bluetooth">CD/MP3/Bluetooth</option>
+              <option value="Climatisation">Climatisation</option>
+              <option value="Vitres électriques">Vitres électriques</option>
+              <option value="Verrouillage centralisé à distance">Verrouillage centralisé à distance</option>
+              <option value="Airbags">Airbags</option>
+              <option value="Caméra de recul">Caméra de recul</option>
+              <option value="Système de navigation/GPS">Système de navigation/GPS</option>
+              <option value="Radar de recul">Radar de recul</option>
+              <option value="ESP">ESP</option>
+              <option value="ABS">ABS</option>
+              <option value="Ordinateur de bord">Ordinateur de bord</option>
+              <option value="Régulateur de vitesse">Régulateur de vitesse</option>
+              <option value="Sièges cuir">Sièges cuir</option>
+              <option value="Toit ouvrant">Toit ouvrant</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-success btn-custom">Estimer le prix</button>
+          <a href="{{ url_for('home') }}" class="btn btn-secondary btn-custom">Retour à l'accueil</a>
+        </form>
+
+        <div>
+          <img src="{{ url_for('static', filename='l-removebg-preview.png') }}" alt="Voiture" />
+        </div>
+      </div>
+    </main>
+<!-- Modal -->
+<div class="modal fade" id="priceModal" tabindex="-1" aria-labelledby="priceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title w-100" id="priceModalLabel">Résultat de l'estimation</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      
+   <div class="modal-body custom-result-box">
+  {% if predicted_price %}
+    <div class="price-estimation">
+      <p class="price-label">Le prix estimé de votre voiture est :</p>
+      <p class="price-value">{{ predicted_price }}k DH</p>
+    </div>
+  {% elif error %}
+    <div class="price-error">
+      <i class="bi bi-x-circle-fill"></i>
+      <span>{{ error }}</span>
+    </div>
+  {% endif %}
+</div>
+
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2025 CarPriceMA | Tous droits réservés</p>
+      <p>
+        <a href="https://www.linkedin.com" target="_blank">LinkedIn</a> |
+        <a href="https://www.twitter.com" target="_blank">Twitter</a>
+      </p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/js/multi-select-tag.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      new MultiSelectTag('equipements-select', {
+        maxSelection: 20,
+        placeholder: 'Sélectionnez les équipements...',
+        rounded: true
+      });
+    </script>
+
+    <script>
+  // Trigger modal if prediction or error exists
+    {% if predicted_price or error %}
+    var priceModal = new bootstrap.Modal(document.getElementById('priceModal'));
+    window.addEventListener('DOMContentLoaded', function () {
+      priceModal.show();
+    });
+    {% endif %}
+    </script>
+
+
+  </body>
+</html>
