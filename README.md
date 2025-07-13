@@ -24,14 +24,28 @@ Virtual Environment (venv)
 # 💡 How to Run Locally : 
 
 1. Clone the repository
+```python
 git clone https://github.com/Rhaoufalkhadija/CarPriceMA.git
+```
+```python
 cd CarPriceMA/app
+```
 
 2. Install the dependencies
+```python
 python -m venv venv
-venv\Scripts\activate  # On Windows
-source venv/bin/activate  # On Unix or MacOS
+```
+```python
+venv\Scripts\activate 
+``` 
+On Windows
+```python
+source venv/bin/activate  
+```
+On Unix or MacOS
+```python
 pip install -r ../requirements.txt
+```
 
 3. Launch the app
 python main.py
@@ -46,7 +60,7 @@ python main.py
 ![alt text](image-2.png)
 
 **Prediction Result**
-![alt text](image-3.png)
+![alt text](image-4.png)
 
 # 🎯 Model Performance :
 
@@ -62,5 +76,5 @@ python main.py
 **Khadija Rhaoufal** and
 **Ouarrak Layla**                
 Web developer & ML enthusiast from Morocco
-khadijarhaoufal@yahoo.com
-ouarraklayla@gmail.com 
+> khadijarhaoufal@yahoo.com 
+> ouarraklayla@gmail.com 
