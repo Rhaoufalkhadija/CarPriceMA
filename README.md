@@ -77,4 +77,5 @@ python main.py
 **Ouarrak Layla**                
 Web developer & ML enthusiast from Morocco
 > khadijarhaoufal@yahoo.com 
+and
 > ouarraklayla@gmail.com 
